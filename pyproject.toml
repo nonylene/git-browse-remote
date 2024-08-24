@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "git-browse-remote"
+version = "0.1.0"
+description = ""
+authors = ["nonylene <nonylene@gmail.com>"]
+license = "CC0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pygit2 = "^1.15.1"
+click = "^8.1.7"
+
+[tool.poetry.scripts]
+git-browse-remote = 'git_browse_remote.cmd:run'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
