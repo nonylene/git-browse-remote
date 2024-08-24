@@ -67,23 +67,19 @@ class TestWithRepo(unittest.TestCase):
     def test_get_remote_browse_url_base(self):
         test_cases = [
             (
-                ("main",),
+                ("main", "origin"),
                 self.remote_origin_url,
             ),
             (
-                (self.branch_name_with_upstream,),
+                (self.branch_name_with_upstream, "sub"),
                 self.remote_sub_url,
-            ),
-            (
-                (self.branch_name_without_upstream,),
-                self.remote_origin_url,
             ),
         ]
 
-        for (arg,), expected in test_cases:
+        for (arg, arg2), expected in test_cases:
             branch = self.repo.lookup_branch(arg)
             self.repo.checkout(branch.name)
-            self.assertEqual(main.get_remote_browse_url_base(self.repo), expected)
+            self.assertEqual(main.get_remote_browse_url_base(self.repo, arg2), expected)
 
     def tearDown(self):
         self.temp_dir.cleanup()
@@ -117,6 +113,14 @@ class TestWithoutRepo(unittest.TestCase):
                 ("ssh://git@github.com/nonylene/git-browse-remote.git",),
                 "https://github.com/nonylene/git-browse-remote",
             ),
+            (
+                ("git@github.com:nonylene/git-browse-remote.git",),
+                "https://github.com/nonylene/git-browse-remote",
+            ),
+            (
+                ("git@github.com:nonylene/git-browse-remote",),
+                "https://github.com/nonylene/git-browse-remote",
+            ),
         ]
 
         for (arg,), expected in test_cases:
@@ -125,6 +129,7 @@ class TestWithoutRepo(unittest.TestCase):
     def test_get_browse_url_exception(self):
         test_cases = [
             (("http://github.com/nonylene/git-browse-remote",),),
+            (("git@github.com:~foo/nonylene/git-browse-remote",),),
             (("invalid-url",),),
         ]
 
@@ -144,7 +149,7 @@ class TestWithoutRepo(unittest.TestCase):
 
     def test_exec_git_browse(self):
         with patch("os.execlp") as p:
-            main.exec_git_browse("https://github.com/nonylene/git-browse-remote")
+            main.exec_git_web_browse("https://github.com/nonylene/git-browse-remote")
             p.assert_called_once_with(
                 "git",
                 "git",

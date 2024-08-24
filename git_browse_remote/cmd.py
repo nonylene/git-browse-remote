@@ -21,4 +21,4 @@ def run(pr: bool, path: Optional[str]):
 
 
 if __name__ == "__main__":
-    run()
+    run()  # type: ignore
