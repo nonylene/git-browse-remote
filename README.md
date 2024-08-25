@@ -13,6 +13,12 @@ This tool executes `$ git web--remote` to open a URL. To change the browser to b
 
 ## Usage
 
+### Install
+
+```
+$ pipx install git-browse-remote
+```
+
 ### Open the PR url for the current branch
 
 ```
