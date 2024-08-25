@@ -93,7 +93,7 @@ def get_remote_default_branch(repo: pygit2.Repository, remote_name: str) -> str:
         return origin_head_ref[len(prefix) :]
 
     except KeyError:
-        logger.warn(
+        logger.warning(
             f"The remote default branch information is not found for the remote '{remote_name}' and defaulted to 'main'.\n"
             "You can set the remote HEAD by running the following command:\n"
             f"$ git remote set-head {remote_name} -a"
@@ -104,7 +104,8 @@ def get_remote_default_branch(repo: pygit2.Repository, remote_name: str) -> str:
 def get_ref_for_pathview(repo: pygit2.Repository, remote_name: str) -> str:
     head_name = repo.head.shorthand
     if repo.head_is_detached:
-        return head_name
+        # repo.head is 'HEAD'
+        return str(repo.head.target)
 
     if has_branch_on_remote(repo, remote_name, head_name):
         return head_name
@@ -135,6 +136,15 @@ def tree_or_blob(repo_root: pathlib.Path, path: Optional[str]) -> str:
 def get_subpath(repo_root: pathlib.Path, path: Optional[str]) -> str:
     if not path:
         # toplevel
+        return ""
+
+    if str(repo_root) != os.path.commonpath(
+        [os.path.abspath(repo_root / path), repo_root]
+    ):
+        # Outside path
+        logger.warning(
+            f"Specified path {path} resides outside of the repository. The repository root will be opened."
+        )
         return ""
 
     # Path.resolve does not fit here since that follows symlinks.
