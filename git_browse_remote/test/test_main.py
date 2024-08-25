@@ -117,6 +117,21 @@ class TestWithRepo(unittest.TestCase):
         for (arg, arg2), expected in test_cases:
             self.assertEqual(main.has_branch_on_remote(self.repo, arg, arg2), expected)
 
+    def test_get_remote_default_branch(self):
+        test_cases = [
+            (
+                ("origin",),
+                "main",
+            ),
+            (
+                ("sub",),
+                "main",  # no origin HEAD fetched by just adding aremote
+            ),
+        ]
+
+        for (arg,), expected in test_cases:
+            self.assertEqual(main.get_remote_default_branch(self.repo, arg), expected)
+
     def test_get_ref_for_pathview(self):
         self.assertEqual(main.get_ref_for_pathview(self.repo, "origin"), "main")
 

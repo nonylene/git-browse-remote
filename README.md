@@ -30,7 +30,13 @@ $ git browse-remote {path} # e.g. https://github.com/nonylene/git-browse-remote/
 ## Development
 
 ```
+# Install dependencies
 $ poetry install
+# Run
 $ poetry run git-browse-remote --help
+# Test
 $ poetry run python3 -m unittest
-``
+# Coverage
+$ poetry run coverage run -m unittest
+$ poetry run coverage report -m
+```

@@ -28,4 +28,5 @@ jobs:
         poetry install
     - name: Test with unittest
       run: |
-        poetry run python3 -m unittest
+        poetry coverage run -m unittest
+        poetry coverage report -m

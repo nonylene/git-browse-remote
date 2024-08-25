@@ -14,6 +14,9 @@ click = "^8.1.7"
 [tool.poetry.scripts]
 git-browse-remote = 'git_browse_remote.cmd:run'
 
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.6.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
