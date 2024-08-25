@@ -19,6 +19,9 @@ This tool executes `$ git web--remote` to open a URL. To change the browser to b
 $ pipx install git-browse-remote
 ```
 
+PyPI: https://pypi.org/project/git-browse-remote/
+
+
 ### Open the PR url for the current branch
 
 ```
