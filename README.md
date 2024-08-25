@@ -40,3 +40,8 @@ $ poetry run python3 -m unittest
 $ poetry run coverage run -m unittest
 $ poetry run coverage report -m
 ```
+
+### Release
+
+- Bump up version in pyproject.toml
+- `git tag v{version}`
