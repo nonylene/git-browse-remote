@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "git-browse-remote"
-version = "0.1.0"
-description = ""
+version = "0.1.1"
+description = "Browse the GitHub repository with the browser"
 authors = ["nonylene <nonylene@gmail.com>"]
-license = "CC0"
+license = "CC0-1.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
