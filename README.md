@@ -6,7 +6,7 @@ This module is inpired by [git-browse-remote](https://github.com/motemen/git-bro
 
 ## Supported environments
 
-- Python >= 3.12
+- Python >= 3.11
 - GitHub (and repositories that have compatible URL structure with GitHub, e.g. GitHub enterprise)
 
 This tool executes `$ git web--remote` to open a URL. To change the browser to be used, see [git-web--browse documentation](https://git-scm.com/docs/git-web--browse).
